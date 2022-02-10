@@ -31,6 +31,7 @@ class Client extends User
 
     public function __construct()
     {
+        $this->setRoles(['ROLE_CLIENT']);
         $this->commandes = new ArrayCollection();
     }
 

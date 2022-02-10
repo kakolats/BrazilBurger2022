@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
- * @ORM\DiscriminatorMap({"user" = "User", "client" = "Client"}) 
+ * @ORM\DiscriminatorMap({"user" = "User", "client" = "Client", "gestionnaire"="Gestionnaire"}) 
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {

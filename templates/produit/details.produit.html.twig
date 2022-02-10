@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detais produits{% endblock %}
+
+{% block style %}
+
+    <script src="{{asset('e-commerce/js/jquery-2.0.0.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('e-commerce/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
+    <link href="{{asset('e-commerce/css/bootstrap.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('e-commerce/fonts/fontawesome/css/all.min.css')}}" type="text/css" rel="stylesheet">
+    <link href="{{asset('e-commerce/fonts/feathericons/css/iconfont.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('e-commerce/fonts/material-icons/css/materialdesignicons.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('e-commerce/css/ui.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('e-commerce/css/responsive.css')}}" rel="stylesheet" />
+    <script src="{{asset('e-commerce/js/script.js')}}" type="text/javascript"></script>
+
+{% endblock %}
+
+{% block card_body %}
+
+<!-- ============================ COMPONENT 1 ================================= -->
+
+<div class="card">
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<h2>Details du produit</h2>
+</br>
+</br>
+	<div class="row no-gutters">
+		<aside class="col-md-6">
+            <article class="gallery-wrap"> 
+                <div class="img-big-wrap">
+                <a href="#"><img src="{{produit.image}}" width="650"></a>
+                </div> <!-- img-big-wrap.// -->
+            </article> <!-- gallery-wrap .end// -->
+		</aside>
+
+<main class="col-md-6 border-left">
+
+    <article class="content-body">
+
+        <h2 class="title">{{produit.nom}}</h2>
+
+
+        <div class="mb-3"> 
+            <var class="price h4">{{produit.prix}} CFA</var> 
+        </div> 
+
+        <p>{{produit.description}}</p>
+
+        <hr>
+            <div class="row pl-4">
+                <div class="form-group col-md flex-grow-0">
+                    <label>Quantity</label>
+                    <div class="input-group mb-3 input-spinner">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-light" type="button" id="button-plus"> + </button>
+                    </div>
+                    <input type="text" class="form-control ml-2" value="1">
+                    <div class="input-group-append">
+                        <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
+                    </div>
+                    </div>
+                </div> <!-- col.// -->
+                <div class="form-group col-md">
+                        <label>Select size</label>
+                        <div class="mt-2">
+                            <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="select_size" checked="" class="custom-control-input">
+                            <div class="custom-control-label">Small</div>
+                            </label>
+
+                            <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="select_size" class="custom-control-input">
+                            <div class="custom-control-label">Medium</div>
+                            </label>
+
+                            <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="select_size" class="custom-control-input">
+                            <div class="custom-control-label">Large</div>
+                            </label>
+
+                        </div>
+                </div> <!-- col.// -->
+            </div> <!-- row.// -->
+            <a href="#" class="btn  btn-primary"> Buy now </a>
+            <a href="#" class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+    </article> 
+
+</main> 
+
+</div> 
+
+
+{% endblock %}

@@ -37,20 +37,15 @@ class Burger extends Produit
 
     public function getId(): ?int
     {
-        return $this->id;
+        return parent::getId();
     }
 
     public function getDescription(): ?string
     {
-        return $this->description;
+        return parent::getDescription();
     }
 
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection|Menu[]

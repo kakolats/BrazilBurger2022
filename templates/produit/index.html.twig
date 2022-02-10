@@ -1,0 +1,211 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue{% endblock %}
+
+{% block stylesheets %}
+
+		<link href="{{asset('burgerKing/img/favicon.ico')}}" rel="icon">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{{asset('burgerKing/lib/animate/animate.min.css')}}" rel="stylesheet">
+        <link href="{{asset('burgerKing/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+        <link href="{{asset('burgerKing/lib/flaticon/font/flaticon.css')}}" rel="stylesheet">
+        <link href="{{asset('burgerKing/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css')}}" rel="stylesheet" />
+        <link href="{{asset('burgerKing/css/style.css')}}" rel="stylesheet">
+
+{% endblock %}
+
+{% block script %}
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/script.js')}}" type="text/javascript"></script>
+{% endblock %}
+
+
+{% block card_body %}
+<!-- Food Start -->
+        <div class="food mt-0">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <div class="food-item">
+                            <i class="flaticon-burger"></i>
+                            <h2>Burgers</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Phasel nec pretium mi. Curabit facilis ornare velit non vulputa. Aliquam metus tortor auctor quis sem. 
+                            </p>
+                            <a href="">View Menu</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="food-item">
+                            <i class="flaticon-snack"></i>
+                            <h2>Snacks</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Phasel nec pretium mi. Curabit facilis ornare velit non vulputa. Aliquam metus tortor auctor quis sem. 
+                            </p>
+                            <a href="">View Menu</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="food-item">
+                            <i class="flaticon-cocktail"></i>
+                            <h2>Beverages</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Phasel nec pretium mi. Curabit facilis ornare velit non vulputa. Aliquam metus tortor auctor quis sem. 
+                            </p>
+                            <a href="">View Menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Food End -->
+        
+
+        <!-- Menu Start -->
+        <div class="menu">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>Food Menu</p>
+                    <h2>Delicious Food Menu</h2>
+                </div>
+                <div class="menu-tab">
+                    <ul class="nav nav-pills justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" href="#burgers">Burgers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#snacks">Menus</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#beverages">Beverages</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="burgers" class="container tab-pane active">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+							{% for item in burgers %}
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <a href="{{path('produit_details',{'idProd':item.id})}}"><img src="{{item.image}}" alt="Image"></a>
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>{{item.nom}}</span> <strong>{{item.prix}} CFA</strong></h3>
+                                            <p>{{item.description}}</p>
+                                        </div>
+                                    </div>
+							{% endfor %}
+                                </div>
+                                <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="{{asset('burgerKing/img/menu-burger-img.jpg')}}" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="snacks" class="container tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="img/menu-snack.jpg" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Corn Tikki - Spicy fried Aloo</span> <strong>$15.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="img/menu-snack.jpg" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Bread besan Toast</span> <strong>$35.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="img/menu-snack.jpg" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Healthy soya nugget snacks</span> <strong>$20.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="img/menu-snack.jpg" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Tandoori Soya Chunks</span> <strong>$30.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="{{asset('burgerKing/img/menu-snack-img.jpg')}}" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="beverages" class="container tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="img/menu-beverage.jpg" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Single Cup Brew</span> <strong>$7.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="img/menu-beverage.jpg" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Caffe Americano</span> <strong>$9.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="img/menu-beverage.jpg" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Caramel Macchiato</span> <strong>$15.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="img/menu-beverage.jpg" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Standard black coffee</span> <strong>$8.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="img/menu-beverage.jpg" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Standard black coffee</span> <strong>$12.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="{{asset('burgerKing/img/menu-beverage-img.jpg')}}" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Menu End -->
+
+{% endblock %}
