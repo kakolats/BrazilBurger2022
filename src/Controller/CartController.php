@@ -58,6 +58,9 @@ class CartController extends AbstractController
         foreach($request->request as $id=>$quantite){
             //dd(intval($quantite));
             $panier[$id]=intval($quantite);
+            if(intval($quantite)<=0){
+                unset($panier[$id]);
+            }
         }
         $session->set('panier',$panier);
 

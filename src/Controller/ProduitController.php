@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProduitController extends AbstractController
@@ -48,6 +49,7 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/burgers", name="burger_gestion")
      */
     public function burger_gestion(BurgerRepository $repoP): Response
@@ -60,6 +62,7 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/burgers/add", name="burger_add")
      */
     public function burger_add(BurgerRepository $repoP,Request $request,EntityManagerInterface $em
@@ -87,6 +90,7 @@ class ProduitController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/complements/add", name="complement_add")
      */
     public function complement_add(ComplementRepository $repoP,CategorieRepository $repoC,Request $request,EntityManagerInterface $em
@@ -115,6 +119,7 @@ class ProduitController extends AbstractController
     }
 
      /**
+      * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/complements/archive/{id}", name="complement_archive")
      */
     public function complement_archive($id,ComplementRepository $repoC,EntityManagerInterface $em){
@@ -130,6 +135,7 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/complements/update", name="complement_update")
      */
     public function complement_update(ComplementRepository $repoP,CategorieRepository $repoC,Request $request,EntityManagerInterface $em
@@ -158,6 +164,7 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/burgers/update", name="burger_update")
      */
     public function burger_update(BurgerRepository $repoP,Request $request,EntityManagerInterface $em
@@ -187,6 +194,7 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/burgers/edit/{id}", name="burger_edit")
      */
     public function burger_edit(BurgerRepository $repoB, Burger $burgerSelected): Response
@@ -202,6 +210,7 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/complements/edit/{id}", name="complement_edit")
      */
     public function complement_edit(CategorieRepository $repoC,ComplementRepository $repoP,
@@ -221,6 +230,7 @@ class ProduitController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/burgers/archive/{id}", name="burger_archive")
      */
     public function burger_archive($id,BurgerRepository $repoB,EntityManagerInterface $em){
@@ -237,6 +247,7 @@ class ProduitController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/menus", name="menu_gestion")
      */
     public function menu_gestion(MenuRepository $repoP,BurgerRepository $repoB,ComplementRepository $repoC): Response
@@ -254,12 +265,13 @@ class ProduitController extends AbstractController
     }
 
      /**
+      * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/menus/add", name="menu_gestion_add")
      */
     public function menu_gestion_add(Request $request,BurgerRepository $repoB,ComplementRepository $repoC,
     EntityManagerInterface $em,ValidatorInterface $validator)
     {
-        dd($request);
+        //dd($request);
         $prix=0;
         $burger=$repoB->find($request->request->get("burger"));
         $prix+=$burger->getPrix();
@@ -290,6 +302,7 @@ class ProduitController extends AbstractController
     
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/menus/edit/{id}", name="menu_gestion_edit")
      */
     public function menu_gestion_edit(BurgerRepository $repoB,MenuRepository $repoM,
@@ -309,6 +322,7 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/menus/update", name="menu_gestion_update")
      */
     public function menu_gestion_update(MenuRepository $repoP,BurgerRepository $repoB,ComplementRepository $repoC,
@@ -350,6 +364,7 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/menus/archive/{id}", name="menu_gestion_archive")
      */
     public function menu_gestion_archive($id,MenuRepository $repoM,EntityManagerInterface $em){
@@ -365,6 +380,7 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/complements", name="complement_gestion")
      */
     public function complement_gestion(CategorieRepository $repoC,ComplementRepository $repoP): Response

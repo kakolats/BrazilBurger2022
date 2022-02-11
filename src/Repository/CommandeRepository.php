@@ -36,6 +36,14 @@ class CommandeRepository extends ServiceEntityRepository
     }
     */
 
+    public function countEncoursToday(){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p FROM AppBundle:Product p ORDER BY p.name ASC'
+            )
+            ->getResult();
+    }
+
     /*
     public function findOneBySomeField($value): ?Commande
     {
