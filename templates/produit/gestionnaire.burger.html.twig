@@ -14,6 +14,7 @@
                     <th scope="col">&nbsp;</th>
                     <th scope="col">Nom du produit</th>
                     <th scope="col">Prix Unitaire</th>
+                    <th scope="col">Statut</th>
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
@@ -23,8 +24,12 @@
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-product-name">{{item.nom}}</td>
                     <td>{{item.prix}}</td>
+                    <td>{% if item.isArchive %}Archive{% else %}Dispo{% endif %}</td>
                     <td>
-                      <a href="#" class="tm-product-delete-link">
+                      <a href="{{path('burger_edit',{id:item.id})}}" class="tm-product-delete-link">
+                       <i class="fas fa-cog"></i>
+                      </a>
+                      <a href="{{path('burger_archive',{id:item.id})}}" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>
@@ -42,8 +47,109 @@
             </button>
           </div>
         </div>
-        
       </div>
     </div>
+
+
+    <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">Add Burger</h2>
+              </div>
+            </div>
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <form action="{% if burgerSelected is defined %}{{path('burger_update')}}{% else %}{{path('burger_add')}} {% endif %}" class="tm-edit-product-form" method="POST" enctype="multipart/form-data">
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Burger Name
+                    </label>
+                    <input
+                      id="name"
+                      name="nom"
+                      value="{% if burgerSelected is defined %}{{burgerSelected.nom}} {% else %} {% endif %}"
+                      type="text"
+                      class="form-control validate"
+                      required
+                    />
+                    <input hidden name="id" value="{% if burgerSelected is defined %}{{burgerSelected.id}} {% else %} {% endif %}">
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Prix
+                    </label>
+                    <input
+                      id="name"
+                      name="prix"
+                      value="{% if burgerSelected is defined %}{{burgerSelected.prix}} {% else %} {% endif %}"
+                      type="text"
+                      class="form-control validate"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Description
+                    </label>
+                    <input
+                      id="name"
+                      name="description"
+                      value="{% if burgerSelected is defined %}{{burgerSelected.description}} {% else %} {% endif %}"
+                      type="text"
+                      class="form-control validate"
+                      required
+                    />
+                  </div>
+                  
+                  
+
+                  
+                  <div class="row">
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                         
+                        </div>
+                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          
+                        </div>
+                  </div>
+                  
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-dummy mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" name="picture" type="file" style="display:none;" />
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="UPLOAD PRODUCT IMAGE"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
 
 {% endblock %}

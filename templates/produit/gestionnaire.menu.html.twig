@@ -1,6 +1,7 @@
 {% extends 'base.gestion.html.twig' %}
 
 
+
 {% block card_body %}
 
 <div class="container mt-5">
@@ -14,6 +15,7 @@
                     <th scope="col">&nbsp;</th>
                     <th scope="col">Nom du produit</th>
                     <th scope="col">Prix Unitaire</th>
+                    <th scope="col">Statut</th>
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
@@ -23,8 +25,12 @@
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-product-name">{{item.nom}}</td>
                     <td>{{item.prix}}</td>
+                    <td>{% if item.isArchive %}Archive{% else %}Dispo{% endif %}</td>
                     <td>
-                      <a href="#" class="tm-product-delete-link">
+                      <a href="{{path('menu_gestion_edit',{id:item.id})}}" class="tm-product-delete-link">
+                       <i class="fas fa-cog"></i>
+                      </a>
+                      <a href="{{path('menu_gestion_archive',{id:item.id})}}" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>
@@ -46,4 +52,105 @@
       </div>
     </div>
 
+    <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">Add Menu</h2>
+              </div>
+            </div>
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <form action="{% if menuSelected is defined %}{{path('menu_gestion_update')}}{% else %}{{path('menu_gestion_add')}} {% endif %}" method="POST" class="tm-edit-product-form" 
+                enctype="multipart/form-data">
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Product Name
+                    </label>
+                    <input
+                      id="name"
+                      name="nom"
+                      type="text"
+                      value="{% if menuSelected is defined %}{{menuSelected.nom}} {% else %} {% endif %}"
+                      class="form-control validate"
+                      required
+                    />
+                    <input hidden name="id" value="{% if menuSelected is defined %}{{menuSelected.id}} {% else %} {% endif %}">
+                  </div>
+                  
+                  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Burger</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      name="burger"
+                        >
+                      <option selected>Selectionnez le burger</option>
+                      {% for i in burgers %}
+                      <option value="{{i.id}}" {% if menuSelected is defined %} {% if i.id == menuSelected.burger.id %}selected {% else %} {% endif %} {% else %} {% endif %}>{{i.nom}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Complements</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="complements" multiple
+                      name="complements[]">
+                      {% for item in complements %}
+                      <option value="{{item.id}}" {% if menuSelected is defined and item in menuSelected.complements %} selected {% else %} {% endif %}>{{item.nom}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="row">
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          
+                        </div>
+                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                         
+                        </div>
+                  </div>
+                  
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-dummy mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" name="image" type="file" style="display:none;" />
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="UPLOAD PRODUCT IMAGE"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" name="btnAdd" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
+    
 {% endblock %}
+

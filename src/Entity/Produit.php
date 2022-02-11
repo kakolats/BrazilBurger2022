@@ -46,6 +46,11 @@ class Produit
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isArchive;
+
     public function __construct()
     {
         $this->detailCommandes = new ArrayCollection();
@@ -130,6 +135,22 @@ class Produit
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->nom;
+    }
+
+    public function getIsArchive(): ?bool
+    {
+        return $this->isArchive;
+    }
+
+    public function setIsArchive(?bool $isArchive): self
+    {
+        $this->isArchive = $isArchive;
 
         return $this;
     }

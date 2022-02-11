@@ -34,7 +34,7 @@
 		<aside class="col-md-6">
             <article class="gallery-wrap"> 
                 <div class="img-big-wrap">
-                <a href="#"><img src="{{produit.image}}" width="650"></a>
+                <a href="#"><img src="{{asset('pics/')}}{{produit.image}}" width="650"></a>
                 </div> <!-- img-big-wrap.// -->
             </article> <!-- gallery-wrap .end// -->
 		</aside>
@@ -54,41 +54,10 @@
 
         <hr>
             <div class="row pl-4">
-                <div class="form-group col-md flex-grow-0">
-                    <label>Quantity</label>
-                    <div class="input-group mb-3 input-spinner">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-light" type="button" id="button-plus"> + </button>
-                    </div>
-                    <input type="text" class="form-control ml-2" value="1">
-                    <div class="input-group-append">
-                        <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
-                    </div>
-                    </div>
-                </div> <!-- col.// -->
-                <div class="form-group col-md">
-                        <label>Select size</label>
-                        <div class="mt-2">
-                            <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="select_size" checked="" class="custom-control-input">
-                            <div class="custom-control-label">Small</div>
-                            </label>
-
-                            <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="select_size" class="custom-control-input">
-                            <div class="custom-control-label">Medium</div>
-                            </label>
-
-                            <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="select_size" class="custom-control-input">
-                            <div class="custom-control-label">Large</div>
-                            </label>
-
-                        </div>
-                </div> <!-- col.// -->
+               
+                
             </div> <!-- row.// -->
-            <a href="#" class="btn  btn-primary"> Buy now </a>
-            <a href="#" class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+            <a href="{{path('cart_add',{'id':produit.id})}}" class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
     </article> 
 
 </main> 

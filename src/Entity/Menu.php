@@ -43,12 +43,16 @@ class Menu extends Produit
 
     public function getId(): ?int
     {
-        return $this->id;
+        return parent::getId();
     }
 
     public function getDescription(): ?string
     {
         return $this->description;
+    }
+
+    public function emptyComplements(){
+        $this->complements= new ArrayCollection();
     }
 
     public function setDescription(?string $description): self

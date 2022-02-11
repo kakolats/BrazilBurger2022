@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+        <link rel="shortcut icon" type="image/png" href="{{asset('cart/assets/img/favicon.png')}}">
+        <!-- google font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+        <!-- fontawesome -->
+        <link rel="stylesheet" href="{{asset('cart/assets/css/all.min.css')}}">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="{{asset('cart/assets/bootstrap/css/bootstrap.min.css')}}">
+        <!-- owl carousel -->
+        <link rel="stylesheet" href="{{asset('cart/assets/css/owl.carousel.css')}}">
+        <!-- magnific popup -->
+        <link rel="stylesheet" href="{{asset('cart/assets/css/magnific-popup.css')}}">
+        <!-- animate css -->
+        <link rel="stylesheet" href="{{asset('cart/assets/css/animate.css')}}">
+        <!-- mean menu css -->
+        <link rel="stylesheet" href="{{asset('cart/assets/css/meanmenu.min.css')}}">
+        <!-- main style -->
+        <link rel="stylesheet" href="{{asset('cart/assets/css/main.css')}}">
+        <!-- responsive -->
+        <link rel="stylesheet" href="{{asset('cart/assets/css/responsive.css')}}">
+        
+{% endblock %}
+
+{% block card_body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% if total != 0 %}
+<div class="cart-section mt-150 mb-150">
+        <form method="POST" action="{{path('cart_update')}}"> 
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-12">
+					<div class="cart-table-wrap">
+						<table class="cart-table">
+							<thead class="cart-table-head">
+								<tr class="table-head-row">
+									<th class="product-remove"></th>
+									<th class="product-image">Product Image</th>
+									<th class="product-name">Name</th>
+									<th class="product-price">Price</th>
+									<th class="product-quantity">Quantity</th>
+									<th class="product-total">Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for i in items %}
+								<tr class="table-body-row">
+									<td class="product-remove"><a href="{{path('cart_remove',{'id':i['produit'].id})}}"><i class="far fa-window-close"></i></a></td>
+									<td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt=""></td>
+									<td class="product-name">{{i['produit'].nom}}</td>
+									<td class="product-price">{{i['produit'].prix}}</td>
+									<td class="product-quantity"><input type="number" name="{{i['produit'].id}}" value="{{i['quantite']}}" placeholder="0"></td>
+									<td class="product-total">{{i['produit'].prix*i['quantite']}}</td>
+								</tr>
+                                {% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="col-lg-4">
+					<div class="total-section">
+						<table class="total-table">
+							<thead class="total-table-head">
+								<tr class="table-total-row">
+									<th>Total</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="total-data">
+									<td><strong>Total: </strong></td>
+									<td>{{total}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="cart-buttons">
+							<input  type="submit" value="Update" class="boxed-btn">
+							<a href="{{path('commande_add')}}" class="boxed-btn black">Commander</a>
+						</div>
+					</div>
+
+					<div class="coupon-section">
+						<h3>Apply Coupon</h3>
+						<div class="coupon-form-wrap">
+							<form action="index.html">
+								<p><input type="text" placeholder="Coupon"></p>
+								<p><input type="submit" value="Apply"></p>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        </form>
+	</div>
+	<!-- end cart -->
+{% else %}
+<p>Votre panier est vide :( Allez vous faire plaisir !!!</p>
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+    <script src="{{asset('cart/assets/js/jquery-1.11.3.min.js')}}"></script>
+	<!-- bootstrap -->
+	<script src="{{asset('cart/assets/bootstrap/js/bootstrap.min.js')}}"></script>
+	<!-- count down -->
+	<script src="{{asset('cart/assets/js/jquery.countdown.js')}}"></script>
+	<!-- isotope -->
+	<script src="{{asset('cart/assets/js/jquery.isotope-3.0.6.min.js')}}"></script>
+	<!-- waypoints -->
+	<script src="{{asset('cart/assets/js/waypoints.js')}}"></script>
+	<!-- owl carousel -->
+	<script src="{{asset('cart/assets/js/owl.carousel.min.js')}}"></script>
+	<!-- magnific popup -->
+	<script src="{{asset('cart/assets/js/jquery.magnific-popup.min.js')}}"></script>
+	<!-- mean menu -->
+	<script src="{{asset('cart/assets/js/jquery.meanmenu.min.js')}}"></script>
+	<!-- sticker js -->
+	<script src="{{asset('cart/assets/js/sticker.js')}}"></script>
+	<!-- main js -->
+	<script src="{{asset('cart/assets/js/main.js')}}"></script>
+{% endblock %}

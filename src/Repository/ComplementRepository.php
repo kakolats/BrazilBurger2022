@@ -36,6 +36,21 @@ class ComplementRepository extends ServiceEntityRepository
     }
     */
 
+    /**
+    * @return Complement[] Returns an array of Complement objects
+    */
+    public function findByCategorie($value)
+    {
+        return $this->createQueryBuilder('')
+            ->andWhere('c.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('c.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Complement
     {

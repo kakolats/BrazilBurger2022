@@ -14,6 +14,7 @@
                     <th scope="col">&nbsp;</th>
                     <th scope="col">Nom du produit</th>
                     <th scope="col">Prix Unitaire</th>
+                    <th scope="col">Statut</th>
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
@@ -23,8 +24,12 @@
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-product-name">{{item.nom}}</td>
                     <td>{{item.prix}}</td>
+                    <td>{% if item.isArchive %}Archive{% else %}Dispo{% endif %}</td>
                     <td>
-                      <a href="#" class="tm-product-delete-link">
+                      <a href="{{path('complement_edit',{id:item.id})}}" class="tm-product-delete-link">
+                       <i class="fas fa-cog"></i>
+                      </a>
+                      <a href="{{path('complement_archive',{id:item.id})}}" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>
@@ -67,6 +72,102 @@
             <button class="btn btn-primary btn-block text-uppercase mb-3">
               Add new category
             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">Add Complement</h2>
+              </div>
+            </div>
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <form action="{% if complementSelected is defined %}{{path('complement_update')}}{% else %}{{path('complement_add')}} {% endif %}" class="tm-edit-product-form" method="POST" enctype="multipart/form-data">
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Complement Name
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      value="{% if complementSelected is defined %}{{complementSelected.nom}} {% else %} {% endif %}"
+                      type="text"
+                      class="form-control validate"
+                      required
+                    />
+                    <input hidden name="id" value="{% if complementSelected is defined %}{{complementSelected.id}} {% else %} {% endif %}">
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Prix
+                    </label>
+                    <input
+                      id="name"
+                      name="prix"
+                      value="{% if complementSelected is defined %}{{complementSelected.prix}} {% else %} {% endif %}"
+                      type="text"
+                      class="form-control validate"
+                      required
+                    />
+                  </div>
+                                   
+
+                  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Categorie</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category"
+                      name="categorie"
+                    >
+                    {% for item in categories %}
+                      <option value="{{item.id}}"{% if complementSelected is defined and item.id == complementSelected.categorie.id %} selected {% else %} {% endif %}">{{item.nom}}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                  <div class="row">
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          
+                        </div>
+                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          
+                        </div>
+                  </div>
+                  
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-dummy mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" name="picture" type="file" style="display:none;" />
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="UPLOAD PRODUCT IMAGE"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+              </div>
+            </form>
+            </div>
           </div>
         </div>
       </div>

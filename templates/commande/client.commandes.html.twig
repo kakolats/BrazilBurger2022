@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block card_body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Total</th>
+        <th scope="col">Statut</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in commandes %}
+        <tr>
+        <th scope="row"></th>
+        <td>{{item.createdAt|date('Y-m-d H:i:s')}}</td>
+        <td>{{item.total}}</td>
+        <td>{{item.statut}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

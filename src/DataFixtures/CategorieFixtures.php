@@ -11,7 +11,7 @@ class CategorieFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
+        /*// $product = new Product();
         // $manager->persist($product);
         $categories=["Boisson","Accompagnement"];
 
@@ -33,6 +33,6 @@ class CategorieFixtures extends Fixture
         
 
 
-        $manager->flush();
+        $manager->flush();*/
     }
 }

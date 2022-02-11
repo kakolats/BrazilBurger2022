@@ -11,7 +11,7 @@ class BurgerFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
+       /* // $product = new Product();
         // $manager->persist($product);
         for ($i=1; $i <4 ; $i++) { 
             $burger=new Burger();
@@ -21,6 +21,6 @@ class BurgerFixtures extends Fixture
                    ->setDescription("Ceci est la description du burger");
             $manager->persist($burger);
         }
-        $manager->flush();
+        $manager->flush();*/
     }
 }
