@@ -49,6 +49,22 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @Route("/produit/menu/{idProd}", name="menu_details")
+     */
+    public function menu_details(MenuRepository $repoP,BurgerRepository $repoB,$idProd): Response
+    {
+        $produit=$repoP->find($idProd);
+        $burger=$repoB->find($produit->getBurger()->getId());
+        //dd($burger);
+
+        return $this->render('produit/details.menu.html.twig', [
+            'controller_name' => 'ProduitController',
+            'produit' => $produit,
+            'burger' => $burger,
+        ]);
+    }
+
+    /**
      * @IsGranted("ROLE_GESTIONNAIRE")
      * @Route("gestionnaire/burgers", name="burger_gestion")
      */
